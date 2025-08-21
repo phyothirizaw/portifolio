@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phyo Thiri Zaw | Portfolio</title>
+  <style>
+    /* ===== Base / Reset ===== */
+    :root{
+      --brand-dark: #b23a48;
+      --brand-accent: #f5a3b7;
+      --text: #444;
+      --bg: #fff5f8;
+      --card-bg: #ffffff;
+      --shadow: 0 6px 14px rgba(0,0,0,0.10);
+      --shadow-hover: 0 12px 22px rgba(0,0,0,0.14);
+      --radius: 16px;
+      --container: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+    }
+    img { max-width: 100%; display: block; }
+
+    /* ===== Header (Original Gradient + Soft Animation) ===== */
+    header {
+      /* original color you shared */
+      background: linear-gradient(135deg, #fcb1b1, #fce1e4);
+      background-size: 200% 200%;            /* for subtle motion */
+      animation: gradientShift 14s ease-in-out infinite;
+      color: #3d3d3d;
+      text-align: center;
+      padding: 64px 20px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: var(--brand-dark);
+      letter-spacing: 0.3px;
+    }
+    header p {
+      margin: 10px auto 0;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: #6b2d3c;
+      max-width: 800px;
+    }
+
+    /* ===== Nav ===== */
+    nav { margin-top: 20px; }
+    nav a {
+      display: inline-block;
+      color: var(--brand-dark);
+      margin: 0 12px;
+      padding: 8px 10px;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 10px;
+      transition: transform .15s ease, background .15s ease;
+    }
+    nav a:hover { background: rgba(178,58,72,0.08); transform: translateY(-1px); }
+
+    /* ===== Sections ===== */
+    section {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 64px 20px;
+    }
+    h2.section-title {
+      font-size: clamp(1.6rem, 2.6vw, 2rem);
+      margin-bottom: 26px;
+      color: var(--brand-dark);
+      position: relative;
+    }
+    h2.section-title::after {
+      content: "";
+      width: 54px;
+      height: 3px;
+      background: var(--brand-accent);
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      border-radius: 3px;
+    }
+
+    /* ===== About (Photo + Paragraph with better spacing) ===== */
+    .about-wrap {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 36px;                     /* comfortable gap so photo & text aren't cramped */
+      align-items: center;
+    }
+    .about-photo {
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--brand-accent);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+      justify-self: start;           /* no extra left margin, sits nicely */
+    }
+    .about-text { font-size: 1.05rem; }
+
+    /* ===== Card Grids (Skills / Projects / Education / Certs) ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+    /* make cards consistent width and professional on all sections */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+    .card h3 {
+      margin: 0 0 10px;
+      color: var(--brand-dark);
+      font-size: 1.15rem;
+    }
+    .card p { margin: 0.25rem 0 0.35rem; }
+
+    /* ===== Contact ===== */
+    #contact p { font-size: 1.05rem; margin: 10px 0; }
+    #contact a { color: var(--brand-dark); text-decoration: none; font-weight: 700; }
+    #contact a:hover { text-decoration: underline; }
+
+    /* ===== Footer ===== */
+    footer {
+      background: var(--brand-dark);
+      color: #fff;
+      text-align: center;
+      padding: 26px 20px;
+      margin-top: 24px;
+    }
+
+    /* ===== Reveal on Scroll (Fade + Slide Up) ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 900px) {
+      .about-wrap { grid-template-columns: 220px 1fr; gap: 28px; }
+      .about-photo { width: 220px; height: 220px; }
+    }
+    @media (max-width: 680px) {
+      .about-wrap {
+        grid-template-columns: 1fr;  /* stack on mobile */
+        gap: 18px;
+        text-align: left;
+      }
+      .about-photo {
+        width: 200px; height: 200px;
+        justify-self: center;        /* center photo when stacked */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header>
+    <h1>Phyo Thiri Zaw</h1>
+    <p>Final-Year CEIT Student • Aspiring Software Engineer • AI & Web Enthusiast</p>
+    <nav aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ===== About ===== -->
+  <section id="about" class="reveal">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-wrap">
+      <!-- Replace with your real photo path -->
+      <img src="your-photo.jpg" alt="Photo of Phyo Thiri Zaw" class="about-photo" />
+      <div class="about-text">
+        <p>
+          Hello! I’m <strong>Phyo Thiri Zaw</strong>, a final-year Computer Engineering and Information Technology student
+          at Mandalay Technological University. I specialize in <strong>software development</strong>, <strong>web technologies</strong>,
+          and <strong>AI-driven applications</strong>.
+        </p>
+        <p>
+          My projects range from personal finance trackers to AI-powered assistants. I love building
+          clean, user-focused solutions that make everyday tasks easier and smarter.
+        </p>
+        <p>
+          I’m seeking opportunities as a <strong>Junior Software Engineer</strong> where I can contribute to real products,
+          collaborate in agile teams, and keep growing my skills.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Education (Professional Card Width) ===== -->
+  <section id="education" class="reveal">
+    <h2 class="section-title">Education</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Mandalay Technological University</h3>
+        <p><strong>Degree:</strong> B.E. in Computer Engineering & Information Technology (CEIT)</p>
+        <p><strong>Years:</strong> 2020 – 2025</p>
+        <p><strong>GPA:</strong> 3.85 / 4.00</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Skills ===== -->
+  <section id="skills" class="reveal">
+    <h2 class="section-title">Skills</h2>
+    <div class="cards">
+      <div class="card"><h3>Programming</h3><p>Java, Python, JavaScript</p></div>
+      <div class="card"><h3>Web Development</h3><p>HTML, CSS, React, Node.js</p></div>
+      <div class="card"><h3>Databases</h3><p>MySQL</p></div>
+      <div class="card"><h3>Tools</h3><p>Git, GitHub, VS Code</p></div>
+      <div class="card"><h3>Soft Skills</h3><p>Problem-solving, Teamwork, Communication</p></div>
+    </div>
+  </section>
+
+  <!-- ===== Projects ===== -->
+  <section id="projects" class="reveal">
+    <h2 class="section-title">Projects</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>💰 Expense Tracker</h3>
+        <p>Java & MySQL application for personal budgeting with automated tracking and summaries.</p>
+        <p><a href="#" aria-label="Expense Tracker live demo">🔗 Live Demo</a></p>
+      </div>
+      <div class="card">
+        <h3>🌱 AI Greenhouse Planner</h3>
+        <p>Python & ML system that suggests crops, recommends fertilizers, and forecasts yield.</p>
+        <p><a href="#" aria-label="AI Greenhouse Planner live demo">🔗 Live Demo</a></p>
+      </div>
+      <div class="card">
+        <h3>🤖 AI Health Assistant</h3>
+        <p>JavaScript & Tailwind chatbot that supports physical and mental health tips.</p>
+        <p><a href="#" aria-label="AI Health Assistant live demo">🔗 Live Demo</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Certifications ===== -->
+  <section id="certifications" class="reveal">
+    <h2 class="section-title">Certifications</h2>
+    <div class="cards">
+      <div class="card"><h3>Python for Data Science</h3><p>Coursera • 2024</p></div>
+      <div class="card"><h3>Responsive Web Design</h3><p>freeCodeCamp • 2024</p></div>
+      <div class="card"><h3>AI Basics</h3><p>Google Cloud • 2025</p></div>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section id="contact" class="reveal">
+    <h2 class="section-title">Get In Touch</h2>
+    <p>📧 Email: <a href="mailto:phyothirizaw35@gmail.com">phyothirizaw35@gmail.com</a></p>
+    <p>💻 GitHub: <a href="https://github.com/yourgithub" target="_blank" rel="noopener">github.com/yourgithub</a></p>
+    <p>🔗 LinkedIn: <a href="https://linkedin.com/in/yourlinkedin" target="_blank" rel="noopener">linkedin.com/in/yourlinkedin</a></p>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p>© 2025 Phyo Thiri Zaw • Built with 💕 Passion & Code</p>
+  </footer>
+
+  <!-- ===== JS: Section Reveal on Scroll ===== -->
+  <script>
+    // Reveal sections with fade + slide up
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

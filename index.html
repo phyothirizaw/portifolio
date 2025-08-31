@@ -115,6 +115,37 @@
       justify-self: start;           /* no extra left margin, sits nicely */
     }
     .about-text { font-size: 1.05rem; }
+    /*education*/
+    .education-wrap {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 32px;
+  background: var(--card-bg);
+  padding: 28px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.education-wrap .card {
+  flex: 1;
+  box-shadow: none;
+  padding: 15px;
+  background: transparent;
+}
+
+.education-photo {
+  width: 280px;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.education-photo:hover {
+  transform: scale(1.03);
+  box-shadow: var(--shadow-hover);
+}
 
     /* ===== Card Grids (Skills / Projects / Education / Certs) ===== */
     .grid {
@@ -173,6 +204,18 @@
       .about-wrap { grid-template-columns: 220px 1fr; gap: 28px; }
       .about-photo { width: 220px; height: 220px; }
     }
+    @media (max-width: 768px) {
+  .education-wrap {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .education-photo {
+    width: 100%;
+    max-width: 300px;
+    margin-top: 20px;
+  }
+}
     @media (max-width: 680px) {
       .about-wrap {
         grid-template-columns: 1fr;  /* stack on mobile */
@@ -191,7 +234,7 @@
   <!-- ===== Header ===== -->
   <header>
     <h1>Phyo Thiri Zaw</h1>
-    <p>Final-Year CEIT Student • Aspiring Software Engineer • AI & Web Enthusiast</p>
+    <p>Final-Year CEIT Student • Aspiring Software Developer • Web Enthusiast</p>
     <nav aria-label="Primary">
       <a href="#about">About</a>
       <a href="#education">Education</a>
@@ -207,7 +250,7 @@
     <h2 class="section-title">About Me</h2>
     <div class="about-wrap">
       <!-- Replace with your real photo path -->
-      <img src="your-photo.jpg" alt="Photo of Phyo Thiri Zaw" class="about-photo" />
+      <img src="me.jpg" alt="Photo of Phyo Thiri Zaw" class="about-photo" />
       <div class="about-text">
         <p>
           Hello! I’m <strong>Phyo Thiri Zaw</strong>, a final-year Computer Engineering and Information Technology student
@@ -219,7 +262,7 @@
           clean, user-focused solutions that make everyday tasks easier and smarter.
         </p>
         <p>
-          I’m seeking opportunities as a <strong>Junior Software Engineer</strong> where I can contribute to real products,
+          I’m seeking opportunities as a <strong>Junior Software Developer</strong> where I can contribute to real products,
           collaborate in agile teams, and keep growing my skills.
         </p>
       </div>
@@ -228,16 +271,19 @@
 
   <!-- ===== Education (Professional Card Width) ===== -->
   <section id="education" class="reveal">
-    <h2 class="section-title">Education</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>Mandalay Technological University</h3>
-        <p><strong>Degree:</strong> B.E. in Computer Engineering & Information Technology (CEIT)</p>
-        <p><strong>Years:</strong> 2020 – 2025</p>
-        <p><strong>GPA:</strong> 3.85 / 4.00</p>
-      </div>
+  <h2 class="section-title">Education</h2>
+  <div class="education-wrap">
+    <div class="card">
+      <h3>Mandalay Technological University</h3>
+      <p><strong>Degree:</strong> B.E. in Computer Engineering & Information Technology (CEIT)</p>
+      <p><strong>Years:</strong> 2018 – 2026</p>
+      <p><strong>GPA:</strong> 3.85 / 4.00</p>
+      <p><strong>English:</strong> Intermediate</p>
+      <p><strong>Japanese:</strong> N2(N3 passed)</p>
     </div>
-  </section>
+    <img src="thiri.jpg" alt="Education Photo" class="education-photo" />
+  </div>
+</section>
 
   <!-- ===== Skills ===== -->
   <section id="skills" class="reveal">
@@ -277,7 +323,7 @@
   <section id="certifications" class="reveal">
     <h2 class="section-title">Certifications</h2>
     <div class="cards">
-      <div class="card"><h3>Python for Data Science</h3><p>Coursera • 2024</p></div>
+      <div class="card"><h3>Java</h3><p>Coursera • 2023</p></div>
       <div class="card"><h3>Responsive Web Design</h3><p>freeCodeCamp • 2024</p></div>
       <div class="card"><h3>AI Basics</h3><p>Google Cloud • 2025</p></div>
     </div>
@@ -287,8 +333,8 @@
   <section id="contact" class="reveal">
     <h2 class="section-title">Get In Touch</h2>
     <p>📧 Email: <a href="mailto:phyothirizaw35@gmail.com">phyothirizaw35@gmail.com</a></p>
-    <p>💻 GitHub: <a href="https://github.com/yourgithub" target="_blank" rel="noopener">github.com/yourgithub</a></p>
-    <p>🔗 LinkedIn: <a href="https://linkedin.com/in/yourlinkedin" target="_blank" rel="noopener">linkedin.com/in/yourlinkedin</a></p>
+    <p>💻 GitHub: <a href="https://github.com/phyothirizaw" target="_blank" rel="noopener">github.com/yourgithub</a></p>
+   
   </section>
 
   <!-- ===== Footer ===== -->
